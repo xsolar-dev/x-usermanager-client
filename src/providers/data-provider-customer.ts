@@ -1,6 +1,6 @@
 import type { DataProvider } from "@refinedev/core";
 
-const API_URL = "http://localhost:8000";
+const API_URL = "http://localhost:8001";
 
 const fetcher = async (url: string, options?: RequestInit) => {
     return fetch(url, {
@@ -12,10 +12,10 @@ const fetcher = async (url: string, options?: RequestInit) => {
     });
   };
 
-export const dataProvider: DataProvider = {
+export const customerDataProvider: DataProvider = {
     getApiUrl: () => API_URL,
     create: async ({ resource, variables }) => {
-        const response = await fetcher(`${API_URL}/${resource}/createUser`, {
+        const response = await fetcher(`${API_URL}/${resource}/createCustomer`, {
           method: "POST",
           body: JSON.stringify(variables),
           headers: {
@@ -31,7 +31,7 @@ export const dataProvider: DataProvider = {
     },
 
     getOne: async ({ resource, id, meta }) => {
-        const response = await fetcher(`${API_URL}/${resource}/user/${id}`);
+        const response = await fetcher(`${API_URL}/${resource}/${id}`);
     
         if (response.status < 200 || response.status > 299) throw response;
     
@@ -41,7 +41,7 @@ export const dataProvider: DataProvider = {
       },
 
     update: async ({ resource, id, variables }) => {
-        const response = await fetcher(`${API_URL}/${resource}/user/${id}`, {
+        const response = await fetcher(`${API_URL}/${resource}/${id}`, {
           method: "POST",
           body: JSON.stringify(variables),
           headers: {
@@ -78,7 +78,7 @@ export const dataProvider: DataProvider = {
             });
           }
 
-        const response = await fetcher(`${API_URL}/${resource}/list/offset/0/limit/${pagination.pageSize}?${params.toString()}`);
+        const response = await fetcher(`${API_URL}/${resource}/list`);
 
         if (response.status < 200 || response.status > 299) throw response;
 

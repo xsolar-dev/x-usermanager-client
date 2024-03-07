@@ -1,7 +1,7 @@
 import { useTable, EditButton, ShowButton, List } from "@refinedev/antd";
 import { Table, Space } from "antd";
 
-export const ListUsers = () => {
+export const ListPage = () => {
   const { tableProps, sorters } = useTable({
     sorters: { initial: [{ field: "id", order: "asc" }] },
     syncWithLocation: true,
@@ -11,9 +11,9 @@ export const ListUsers = () => {
       <List>
         <Table {...tableProps} rowKey="id">
             <Table.Column dataIndex="id" title="ID" />
-            <Table.Column dataIndex="userName" title="Name" />        
-            <Table.Column dataIndex="pswhash" title="Password" />
-            <Table.Column dataIndex="email" title="Email" />
+            <Table.Column dataIndex="dev_desc" title="Desc" />        
+            <Table.Column dataIndex="state" title="State" />
+            <Table.Column dataIndex="date_create" title="Date Created" />
             <Table.Column
             title="Actions"
             render={(_, record) => (
